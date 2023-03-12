@@ -9,12 +9,13 @@ const {
   addTrip,
 } = require("../controllers/trip");
 
-const { auth } = require("../middleware/auth");
+const { guard } = require("../middleware/guard");
+const { tripValidator } = require("../middleware/tripValidator");
 
-router.get("/", auth, getTrips);
-router.get("/:id", getTrip);
-router.post("/", addTrip);
-router.put("/:id", updateTrip);
-router.delete("/:id", deleteTrip);
+router.get("/", guard, getTrips);
+router.get("/:id", guard, getTrip);
+router.post("/", guard, tripValidator, addTrip);
+router.put("/:id", guard, tripValidator, updateTrip);
+router.delete("/:id", guard, deleteTrip);
 
 module.exports = router;

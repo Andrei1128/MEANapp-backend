@@ -11,12 +11,15 @@ const getTrips = async (req, res) => {
 const addTrip = async (req, res) => {
   const newTrip = new trip(req.body);
   await newTrip.save();
+  res.json(newTrip);
 };
 const updateTrip = async (req, res) => {
   await trip.findByIdAndUpdate(req.params.id, req.body);
+  res.json();
 };
 const deleteTrip = async (req, res) => {
   await trip.findByIdAndDelete(req.params.id);
+  res.json();
 };
 
 module.exports = {

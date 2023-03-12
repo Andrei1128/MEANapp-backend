@@ -3,7 +3,7 @@ const MONGO_URL = process.env.MONGO_URL;
 mongoose.connect(MONGO_URL);
 
 const tokenSchema = new mongoose.Schema({
-  content: { type: String, unique: true },
+  content: { type: String, required: true, unique: true },
 });
 const token = mongoose.model("token", tokenSchema);
 
