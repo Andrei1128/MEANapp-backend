@@ -9,7 +9,9 @@ const {
   addTrip,
 } = require("../controllers/trip");
 
-router.get("/", getTrips);
+const { auth } = require("../middleware/auth");
+
+router.get("/", auth, getTrips);
 router.get("/:id", getTrip);
 router.post("/", addTrip);
 router.put("/:id", updateTrip);
