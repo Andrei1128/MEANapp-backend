@@ -8,6 +8,7 @@ const tripSchema = new mongoose.Schema({
   rating: { type: Number, required: true },
   expenses: { type: Number, required: true },
   notes: { type: String },
+  image: { type: String },
 });
 const trip = mongoose.model("trip", tripSchema);
 

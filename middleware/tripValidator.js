@@ -8,7 +8,7 @@ function tripValidator(req, res, next) {
     trip.expenses >= 0
   )
     next();
-  else res.status(401).send("Eroare");
+  else res.status(400).send("Validators required!");
 }
 
 module.exports = { tripValidator };
