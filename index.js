@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/trip", require("./routes/trip"));
 app.use("/auth", require("./routes/auth"));
-app.use("/profile", require("./routes/profile"));
 
 app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}...`);
