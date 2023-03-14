@@ -8,7 +8,10 @@ const guard = async (req, res, next) => {
   const tokenFound = await tokenModel.findOne({ content: token });
   if (tokenFound) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if (decoded.expiresIn > Date.now()) return res.sendStatus(401);
+    if (decoded.expiresIn > Date.now()) {
+      await tokenModel.findByIdAndRemove(tokenFound._id);
+      return res.sendStatus(401);
+    }
     req.user = decoded;
     next();
   } else return res.sendStatus(401);

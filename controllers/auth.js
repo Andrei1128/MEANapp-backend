@@ -31,8 +31,15 @@ const signIn = async (req, res) => {
     res.json(token);
   } else res.status(401).send("Wrong password!");
 };
-
+const logout = async (req, res) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token == null) return res.sendStatus(400);
+  await tokenModel.findOneAndRemove({ content: token });
+  res.json();
+};
 module.exports = {
   signUp,
   signIn,
+  logout,
 };
